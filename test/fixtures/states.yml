@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  abr: MyString
+  full_name: MyString
+  population_military: 1
+  population_total: 1
+  housing_units_total: 1
+  housing_units_occupied: 1
+  housing_units_vacant: 1
+
+two:
+  abr: MyString
+  full_name: MyString
+  population_military: 1
+  population_total: 1
+  housing_units_total: 1
+  housing_units_occupied: 1
+  housing_units_vacant: 1
