@@ -14,14 +14,159 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12" id="safest-states-canvas-holder">
+  <div class="col-md-12" id="safest-places-canvas-holder">
     <h4>Top Ten Safest States</h4>
-    <!-- <canvas id="safest-states-chart-area"/> -->
-    <canvas id="safest-states-chart-area" data=<%= @safestPlaces %>/>
-    <%= content_tag :canvas, id: "safest-states-chart-area", data: {states: @safestPlaces.first} %>
+    <canvas id="safest-places-chart-area"/>
   </div>
-  <div class="col-md-12" id="scariest-states-canvas-holder">
+  <div class="col-md-12" id="scariest-places-canvas-holder">
     <h4>Top Ten Scariest States</h4>
-    <canvas id="scariest-states-chart-area"/>
+    <canvas id="scariest-places-chart-area"/>
   </div>
 </div>
+
+<% # TODO This should be moved to its own JS file in the Assets pipeline. This works, but it's smelly. %>
+<%= javascript_tag do %>
+
+  var safeStateNames = [];
+  var safeStateAbbreviations = [];
+  var safeStateMilitaryPop = [];
+  var safeStatePop = [];
+  var safeStateHousingTotal = [];
+  var safeStateHousingOccupied = [];
+  var safeStateHousingVacant = [];
+
+  var scaryStateNames = [];
+  var scaryStateAbbreviations = [];
+  var scaryStateMilitaryPop = [];
+  var scaryStatePop = [];
+  var scaryStateHousingTotal = [];
+  var scaryStateHousingOccupied = [];
+  var scaryStateHousingVacant = [];
+
+  <% for place in @safestPlaces do %>
+    safeStateNames.push("<%= place.full_name %>");
+    safeStateAbbreviations.push("<%= place.abr %>");
+    safeStateMilitaryPop.push(<%= place.population_military %>);
+    safeStatePop.push(<%= place.population_total %>);
+    safeStateHousingTotal.push(<%= place.housing_units_total %>);
+    safeStateHousingOccupied.push(<%= place.housing_units_occupied %>);
+    safeStateHousingVacant.push(<%= place.housing_units_vacant %>);
+  <% end %>
+
+  <% for place in @scariestPlaces do %>
+    scaryStateNames.push("<%= place.full_name %>");
+    scaryStateAbbreviations.push("<%= place.abr %>");
+    scaryStateMilitaryPop.push(<%= place.population_military %>);
+    scaryStatePop.push(<%= place.population_total %>);
+    scaryStateHousingTotal.push(<%= place.housing_units_total %>);
+    scaryStateHousingOccupied.push(<%= place.housing_units_occupied %>);
+    scaryStateHousingVacant.push(<%= place.housing_units_vacant %>);
+  <% end %>
+
+  var safePlacesBarChartData = {
+    labels : safeStateNames,
+    datasets : [
+      {
+        label: "Military Pop.",
+        fillColor: "rgba(255,106,0,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(212,118,51,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: safeStateMilitaryPop
+      },
+      {
+        label: "State Pop.",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: safeStatePop
+      },
+      {
+        label: "Totals Dwellings",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: safeStateHousingTotal
+      },
+      {
+        label: "Occupied Housing",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: safeStateHousingOccupied
+      },
+      {
+        label: "Vacant Housing",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: safeStateHousingVacant
+      }
+    ]
+  }
+
+  var scaryPlacesBarChartData = {
+    labels : scaryStateNames,
+    datasets : [
+      {
+        label: "Military Pop.",
+        fillColor: "rgba(255,106,0,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(212,118,51,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: scaryStateMilitaryPop
+      },
+      {
+        label: "State Pop.",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: scaryStatePop
+      },
+      {
+        label: "Totals Dwellings",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: scaryStateHousingTotal
+      },
+      {
+        label: "Occupied Housing",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: scaryStateHousingOccupied
+      },
+      {
+        label: "Vacant Housing",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        highlightFill : "rgba(151,187,205,0.75)",
+        highlightStroke : "rgba(151,187,205,1)",
+        data: scaryStateHousingVacant
+      }
+    ]
+  }
+
+  window.onload = function(){
+    var ctx = document.getElementById("safest-places-chart-area").getContext("2d");
+    window.safePlacesBarChart = new Chart(ctx).Bar(safePlacesBarChartData, {
+      responsive : true,
+      multiTooltipTemplate: "<%%= datasetLabel %> : <%%= value %>"
+    });
+
+    var ctx = document.getElementById("scariest-places-chart-area").getContext("2d");
+    window.scaryPlacesBarChart = new Chart(ctx).Bar(scaryPlacesBarChartData, {
+      responsive : true,
+      multiTooltipTemplate: "<%%= datasetLabel %>: <%%= value %>"
+    });
+  }
+
+<% end %>
