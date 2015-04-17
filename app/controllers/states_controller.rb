@@ -6,4 +6,5 @@ class StatesController < ApplicationController
 
     @safestPlaces = survivabilitySortedStates.first(10)
     @scariestPlaces = survivabilitySortedStates.last(10)
+  end
 end
