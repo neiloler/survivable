@@ -66,7 +66,7 @@ task :populate_from_sensus => :environment do
     c.use Faraday::Adapter::NetHttp     # perform requests with Net::HTTP
   end
 
-  response = conn.get 'http://api.census.gov/data/2010/sf1?for=state:*&get=PCO0090001,P0010001,H0030001,H0030002,H0030003&key=ENV[SENSUS_API_KEY]'
+  response = conn.get 'http://api.census.gov/data/2010/sf1?for=state:*&get=PCO0090001,P0010001,H0030001,H0030002,H0030003&key=' + ENV[SENSUS_API_KEY]
 
   state_stats = JSON.parse(response.body)
 
