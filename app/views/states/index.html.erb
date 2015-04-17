@@ -1,11 +1,11 @@
 <div id="chart-explanation" class="row">
   <div class="col-md-12">
     <h4>What is the safest US State?</h4>
-    <p>While "safety" is always going to be a relative term in many ways, I've attempted to use US Sensus data to look at the relative safety of given states.</p>
+    <p>While "safety" is always going to be a relative term in many ways, I've attempted to use US Sensus data to look at the relative safety of given states. The US Sensus API has yet to implement a way to fetch rural populations, so we're using military population as the evidence of heavy weapons, which obviously isn't taking into account private firearm ownership, as well as melee weapons. This is a site for fun, don't rely on it as the single source of data for planning your end-of-the-world getaway. :)</p>
     <p>Sorting is based on:
       <ul>
-        <li>Current military occupants <i>(you'd like a lot of these in a zombie outbreak, etc)</i></li>
         <li>Total population <i>(you'd like less people to turn into zombies, riot, etc)</i></li>
+        <li>Current military occupants <i>(you'd like a lot of these in a zombie outbreak, etc)</i></li>
         <li>Total housing units <i>(We'll assume a lower number here indicates more spread out dwellings)</i></li>
         <li>Total housing occupied <i>(We'll want this number to be low, again indicating less neighbors to deal with in the apocalypse)</i></li>
         <li>Total housing unoccupied <i>(We'd like to see this high as it indicates places to move to should trouble arise)</i></li>
@@ -18,6 +18,8 @@
     <h4>Top Ten Safest States</h4>
     <canvas id="safest-places-chart-area"/>
   </div>
+</div>
+<div class="row">
   <div class="col-md-12" id="scariest-places-canvas-holder">
     <h4>Top Ten Scariest States</h4>
     <canvas id="scariest-places-chart-area"/>
@@ -67,42 +69,42 @@
     labels : safeStateNames,
     datasets : [
       {
-        label: "Military Pop.",
-        fillColor: "rgba(255,106,0,0.5)",
-        strokeColor : "rgba(220,220,220,0.8)",
-        highlightFill: "rgba(212,118,51,0.75)",
-        highlightStroke: "rgba(220,220,220,1)",
-        data: safeStateMilitaryPop
-      },
-      {
         label: "State Pop.",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(67,179,118,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(72,179,67,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: safeStatePop
       },
       {
+        label: "Military Pop.",
+        fillColor: "rgba(120,134,107,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(43,58,29,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: safeStateMilitaryPop
+      },
+      {
         label: "Totals Dwellings",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(67,179,174,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(32,141,136,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: safeStateHousingTotal
       },
       {
         label: "Occupied Housing",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(141,136,32,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(103,98,8,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: safeStateHousingOccupied
       },
       {
         label: "Vacant Housing",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(98,8,103,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(174,68,180,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: safeStateHousingVacant
       }
@@ -113,42 +115,42 @@
     labels : scaryStateNames,
     datasets : [
       {
-        label: "Military Pop.",
-        fillColor: "rgba(255,106,0,0.5)",
-        strokeColor : "rgba(220,220,220,0.8)",
-        highlightFill: "rgba(212,118,51,0.75)",
-        highlightStroke: "rgba(220,220,220,1)",
-        data: scaryStateMilitaryPop
-      },
-      {
         label: "State Pop.",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(67,179,118,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(72,179,67,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: scaryStatePop
       },
       {
+        label: "Military Pop.",
+        fillColor: "rgba(120,134,107,0.5)",
+        strokeColor : "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(43,58,29,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: scaryStateMilitaryPop
+      },
+      {
         label: "Totals Dwellings",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(67,179,174,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(32,141,136,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: scaryStateHousingTotal
       },
       {
         label: "Occupied Housing",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(141,136,32,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(103,98,8,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: scaryStateHousingOccupied
       },
       {
         label: "Vacant Housing",
-        fillColor: "rgba(151,187,205,0.5)",
+        fillColor: "rgba(98,8,103,0.5)",
         strokeColor : "rgba(151,187,205,0.8)",
-        highlightFill : "rgba(151,187,205,0.75)",
+        highlightFill : "rgba(174,68,180,0.75)",
         highlightStroke : "rgba(151,187,205,1)",
         data: scaryStateHousingVacant
       }
