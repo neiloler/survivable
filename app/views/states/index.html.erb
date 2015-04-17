@@ -18,9 +18,10 @@
     <h4>Top Ten Safest States</h4>
     <!-- <canvas id="safest-states-chart-area"/> -->
     <canvas id="safest-states-chart-area" data=<%= @safestPlaces %>/>
+    <%= content_tag :canvas, id: "safest-states-chart-area", data: {states: @safestPlaces.first} %>
   </div>
   <div class="col-md-12" id="scariest-states-canvas-holder">
     <h4>Top Ten Scariest States</h4>
-    <canvas id="scariest-states-chart-area"data=<%= @scariestPlaces %>/>
+    <canvas id="scariest-states-chart-area"/>
   </div>
 </div>
