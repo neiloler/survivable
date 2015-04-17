@@ -13,3 +13,14 @@
     </p>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12" id="safest-states-canvas-holder">
+    <h4>Top Ten Safest States</h4>
+    <!-- <canvas id="safest-states-chart-area"/> -->
+    <canvas id="safest-states-chart-area" data=<%= @safestPlaces %>/>
+  </div>
+  <div class="col-md-12" id="scariest-states-canvas-holder">
+    <h4>Top Ten Scariest States</h4>
+    <canvas id="scariest-states-chart-area"data=<%= @scariestPlaces %>/>
+  </div>
+</div>
